@@ -340,7 +340,7 @@ class MetamonPlayer:
         if total_egg < 1:
             resultText += f"You don't have enough fragments to mint"
             print("You don't have enough fragments to mint")
-            return
+            return resultText
 
         # Mint egg
         res = post_formdata(payload, MINT_EGG_URL, headers)
@@ -348,7 +348,7 @@ class MetamonPlayer:
         if code != "SUCCESS":
             resultText += f"Mint eggs failed!"
             print("Mint eggs failed!")
-            return
+            return resultText
         resultText += f"Minted Eggs! Check bag in game to see count and transaction history for amount minted - Amout: {total_egg}"
         print(f"Minted Eggs! Check bag in game to see count and transaction history for amount minted")
         return resultText
