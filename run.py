@@ -110,12 +110,12 @@ class MetamonPlayer:
 
     def init_token(self):
         """Obtain token for game session to perform battles and other actions"""
-        payload = {"address": self.address, "sign": self.sign, "msg": self.msg, "network": "1"}
+        payload = {"address": self.address, "sign": self.sign, "msg": self.msg, "network": "1", "clientType": "MetaMask"}
         response = post_formdata(payload, TOKEN_URL)
         if response.get("code") != "SUCCESS":
             sys.stderr.write("Login failed, token is not initialized. Terminating\n")
             sys.exit(-1)
-        self.token = response.get("data")
+        self.token = response.get("data").get("accessToken")
 
     def change_fighter(self, monster_id):
         """Switch to next metamon if you have few"""
@@ -216,7 +216,7 @@ class MetamonPlayer:
         """ Obtain list of metamons on the wallet"""
         payload = {"address": self.address}
         headers = {
-            "accessToken": self.token,
+            "accesstoken": self.token,
         }
         response = post_formdata(payload, WALLET_PROPERTY_LIST, headers)
         mtms = response.get("data", {}).get("metamonList", [])
