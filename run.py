@@ -25,7 +25,7 @@ CHECK_BAG_URL = f"{BASE_URL}/checkBag"
 
 server = Flask(__name__)
 
-cors = CORS(server, resources={r"/v2/service/*": {"origins": "*"}})
+cors = CORS(server, resources={r"/auto/*": {"origins": "*"}})
 server.config['CORS_HEADERS'] = 'Content-Type'
 server.secret_key = 'AutoverseSecretkey123!@#'
 server.config['SESSION_TYPE'] = 'filesystem'
